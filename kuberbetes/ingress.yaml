@@ -1,0 +1,27 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: your-flask-ingress
+  annotations:
+    alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:your-region:your-account-id:certificate/your-acm-certificate-id
+    ## SSL Settings
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTPS":443}, {"HTTP":80}]'
+    # SSL Redirect Setting
+    alb.ingress.kubernetes.io/ssl-redirect: '443'
+    # External DNS - For creating a Record Set in Route53
+    external-dns.alpha.kubernetes.io/hostname: certdiscovery-tls-101.atlaskube.com 
+spec:
+  ingressClassName: my-aws-ingress-class   # Ingress Class                  
+  tls:
+  - hosts:
+    - "*.atlaskube.com"
+  rules:
+    - http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: your-flask-app
+                port:
+                  number: 80
