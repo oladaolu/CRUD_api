@@ -29,7 +29,7 @@ spec:
             - name: DB_PORT
               value: "3306"            
             - name: DB_NAME
-              value: "usermgmt"            
+              value: "myflask"            
             - name: DB_USERNAME
               value: "dbadmin"        # RDS DB Username is dbadmin     
             - name: DB_PASSWORD
