@@ -20,7 +20,7 @@ spec:
           command: ['sh', '-c', 'echo -e "Checking for the availability of MySQL Server deployment"; while ! nc -z mysql 3306; do sleep 1; printf "-"; done; echo -e "  >> MySQL DB Server has started";']      
       containers:
         - name: myflask-restapp
-          image: myflask:1.0.0  
+          image: myflaskapp:1.0.0  
           ports: 
             - containerPort: 8095           
           env:
@@ -29,7 +29,7 @@ spec:
             - name: DB_PORT
               value: "3306"            
             - name: DB_NAME
-              value: "myflask"            
+              value: "myflaskapp"            
             - name: DB_USERNAME
               value: "dbadmin"        # RDS DB Username is dbadmin     
             - name: DB_PASSWORD
